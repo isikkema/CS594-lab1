@@ -1,0 +1,6 @@
+/target
+Cargo.lock
+*.jgr
+*.ps
+*.pdf
+*.jpg
