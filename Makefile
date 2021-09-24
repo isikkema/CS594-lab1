@@ -4,39 +4,39 @@ BUNNY=obj/bunny.obj
 RUN=cargo run --quiet --release --
 CONVERT=| jgraph -P | convert -
 
-all: teapot.jpg teapot-hd.jpg teapot-lines.jpg teapot-points.jpg teapot-background.jpg teapot-solid.jpg bunny.jpg bunny-scale.jpg bunny-stretch.jpg bunny-translate.jpg bunny-rotate.jpg
+all: 01-teapot.jpg 02-teapot-hd.jpg 03-teapot-lines.jpg 04-teapot-points.jpg 05-teapot-background.jpg 06-teapot-solid.jpg 07-bunny.jpg 08-bunny-scale.jpg 09-bunny-stretch.jpg 10-bunny-translate.jpg 11-bunny-rotate.jpg
 
-teapot.jpg: $(EXE)
+01-teapot.jpg: $(EXE)
 	$(RUN) $(TEAPOT) 100 100 $(CONVERT) $@
 
-teapot-hd.jpg: $(EXE)
+02-teapot-hd.jpg: $(EXE)
 	$(RUN) $(TEAPOT) 1000 1000 $(CONVERT) $@
 
-teapot-lines.jpg: $(EXE)
+03-teapot-lines.jpg: $(EXE)
 	$(RUN) $(TEAPOT) 1000 1000 --mode lines $(CONVERT) $@
 
-teapot-points.jpg: $(EXE)
+04-teapot-points.jpg: $(EXE)
 	$(RUN) $(TEAPOT) 1000 1000 --mode points $(CONVERT) $@
 
-teapot-background.jpg: $(EXE)
+05-teapot-background.jpg: $(EXE)
 	$(RUN) $(TEAPOT) 500 500 --mode lines --background "0.5 0.5 0.5" $(CONVERT) $@
 
-teapot-solid.jpg: $(EXE)
+06-teapot-solid.jpg: $(EXE)
 	$(RUN) $(TEAPOT) 500 500 --shader solid --color "0 1 1" $(CONVERT) $@
 
-bunny.jpg: $(EXE)
+07-bunny.jpg: $(EXE)
 	$(RUN) $(BUNNY) 500 500 $(CONVERT) $@
 
-bunny-scale.jpg: $(EXE)
+08-bunny-scale.jpg: $(EXE)
 	$(RUN) $(BUNNY) 500 500 --scale "50 50 50" $(CONVERT) $@
 
-bunny-stretch.jpg: $(EXE)
+09-bunny-stretch.jpg: $(EXE)
 	$(RUN) $(BUNNY) 500 500 --scale "30 50 30" $(CONVERT) $@
 
-bunny-translate.jpg: $(EXE)
+10-bunny-translate.jpg: $(EXE)
 	$(RUN) $(BUNNY) 500 500 --scale "30 30 30" --translate '1 2 0' $(CONVERT) $@
 
-bunny-rotate.jpg: $(EXE)
+11-bunny-rotate.jpg: $(EXE)
 	$(RUN) $(BUNNY) 500 500 --scale "50 50 50" --yaw 0.75 $(CONVERT) $@
 
 $(EXE):
