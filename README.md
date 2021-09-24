@@ -5,14 +5,14 @@
 It is a mix of jgraph and rangle, which is in turn a mix of Rust and triangle.
 
 ## TA Testing
-To re-generate the example outputs, run `make clean && make`.  
+To re-generate the example outputs, run `$ make clean && make`.  
 First, the program will compile. Then outputs `01-*.jpg` through `11-*.jpg` will be generated.  
 Because this program is doing graphics work on a CPU, it may take a moment to finish. For example, on a Hydra machine, the whole process took around 3 minutes.  
 We thank you for your patience.
 
 ## Usage
 The executable is located at `target/release/j-grangle`.  
-However, you may also run it with `cargo run --release -- [OPTIONS]`.
+However, you may also run it with `$ cargo run --release -- [OPTIONS]`.
 ```
 J-Grangle 
 
@@ -43,11 +43,11 @@ ARGS:
 ```
 
 ## Examples
-`j-grangle obj/teapot.obj 1000 1000 | jgraph -P | convert - 02-teapot-hd.jpg`  
+`$ j-grangle obj/teapot.obj 1000 1000 | jgraph -P | convert - 02-teapot-hd.jpg`  
 ![](02-teapot-hd.jpg)  
 
-`j-grangle obj/teapot.obj 500 500 --mode lines --background "0.5 0.5 0.5" | jgraph -P | convert - 05-teapot-background.jpg`  
+`$ j-grangle obj/teapot.obj 500 500 --mode lines --background "0.5 0.5 0.5" | jgraph -P | convert - 05-teapot-background.jpg`  
 ![](05-teapot-background.jpg)  
 
-`j-grangle obj/bunny.obj 500 500 --scale "30 30 30" --translate "-1 2 0" | jgraph -P | convert - 10-bunny-translate.jpg`
+`$ j-grangle obj/bunny.obj 500 500 --scale "30 30 30" --translate "-1 2 0" | jgraph -P | convert - 10-bunny-translate.jpg`
 ![](10-bunny-translate.jpg)  
