@@ -34,7 +34,7 @@ all: 01-teapot.jpg 02-teapot-hd.jpg 03-teapot-lines.jpg 04-teapot-points.jpg 05-
 	$(RUN) $(BUNNY) 500 500 --scale "30 50 30" $(CONVERT) $@
 
 10-bunny-translate.jpg: $(EXE)
-	$(RUN) $(BUNNY) 500 500 --scale "30 30 30" --translate '1 2 0' $(CONVERT) $@
+	$(RUN) $(BUNNY) 500 500 --scale "30 30 30" --translate "-1 2 0" $(CONVERT) $@
 
 11-bunny-rotate.jpg: $(EXE)
 	$(RUN) $(BUNNY) 500 500 --scale "50 50 50" --yaw 0.75 $(CONVERT) $@
