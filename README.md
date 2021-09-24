@@ -6,7 +6,7 @@ It is a mix of jgraph and rangle, which is in turn a mix of Rust and triangle.
 
 ## TA Testing
 To re-generate the example outputs, run `make clean && make`.  
-First, the program will compile and then outputs `01-*.jpg` through `11-*.jpg` will be generated.  
+First, the program will compile. Then outputs `01-*.jpg` through `11-*.jpg` will be generated.  
 Because this program is doing graphics work on a CPU, it may take a moment to finish. For example, on a Hydra machine, the whole process took around 3 minutes.  
 We thank you for your patience.
 
