@@ -89,6 +89,7 @@ fn main() -> Result<(), RangleError> {
                 .short("b")
                 .long("background")
                 .takes_value(true)
+                .allow_hyphen_values(true)
                 .default_value("0 0 0")
                 .help("The background color"),
         )
@@ -106,6 +107,7 @@ fn main() -> Result<(), RangleError> {
                 .short("c")
                 .long("color")
                 .takes_value(true)
+                .allow_hyphen_values(true)
                 .help("The color of the object"),
         )
         .arg(
@@ -113,6 +115,7 @@ fn main() -> Result<(), RangleError> {
                 .short("s")
                 .long("scale")
                 .takes_value(true)
+                .allow_hyphen_values(true)
                 .default_value("1 1 1")
                 .help("The x y z values to scale the model by"),
         )
@@ -121,6 +124,7 @@ fn main() -> Result<(), RangleError> {
                 .short("t")
                 .long("translate")
                 .takes_value(true)
+                .allow_hyphen_values(true)
                 .default_value("0 0 0")
                 .help("The xyz values to translate the model by"),
         )
@@ -128,6 +132,7 @@ fn main() -> Result<(), RangleError> {
             Arg::with_name("yaw")
                 .long("yaw")
                 .takes_value(true)
+                .allow_hyphen_values(true)
                 .default_value("0")
                 .help("The value in radians to rotate the model around the y-axis"),
         )
@@ -135,6 +140,7 @@ fn main() -> Result<(), RangleError> {
             Arg::with_name("pitch")
                 .long("pitch")
                 .takes_value(true)
+                .allow_hyphen_values(true)
                 .default_value("0")
                 .help("The value in radians to rotate the model around the x-axis"),
         )
@@ -142,8 +148,18 @@ fn main() -> Result<(), RangleError> {
             Arg::with_name("roll")
                 .long("roll")
                 .takes_value(true)
+                .allow_hyphen_values(true)
                 .default_value("0")
                 .help("The value in radians to rotate the model around the z-axis"),
+        )
+        .arg(
+            Arg::with_name("mode")
+                .short("m")
+                .long("mode")
+                .takes_value(true)
+                .possible_values(&["triangles", "lines", "points"])
+                .default_value("triangles")
+                .help("The display mode used to render the model"),
         )
         .get_matches();
 
@@ -158,6 +174,7 @@ fn main() -> Result<(), RangleError> {
     let yaw = matches.value_of("yaw").unwrap();
     let pitch = matches.value_of("pitch").unwrap();
     let roll = matches.value_of("roll").unwrap();
+    let mode = matches.value_of("mode").unwrap();
 
     let width = width.parse::<u16>()?;
     let height = height.parse::<u16>()?;
@@ -185,12 +202,18 @@ fn main() -> Result<(), RangleError> {
     let yaw = yaw.parse::<f32>()?;
     let pitch = pitch.parse::<f32>()?;
     let roll = roll.parse::<f32>()?;
+    let mode = match mode {
+        "triangles" => RangleMode::Triangles,
+        "lines" => RangleMode::Lines,
+        "points" => RangleMode::Points,
+        _ => unreachable!(),
+    };
 
     {
         let display = JgraphDisplay::new(width, height, background_color)?;
 
         let mut rangle = Rangle::new(Box::new(display))?;
-        rangle.set_display_mode(RangleMode::Triangles);
+        rangle.set_display_mode(mode);
 
         let mut model = Model::from_file(filename)?;
         let shader = match shader {

@@ -46,9 +46,18 @@ impl RangleDisplay for JgraphDisplay {
         let mut color;
 
         let (w, h) = self.get_size();
+        
+        let (xsize_ps, ysize_ps) = (w as f32, h as f32);
+        let (xsize_in, ysize_in) = (xsize_ps / 72.0, ysize_ps / 72.0);
+
+        let paper_size = (612.0, 792.0);
+        let xtranslate = (paper_size.0 - xsize_ps) / 4.0;
+        let ytranslate = ((paper_size.1 - ysize_ps) / 4.0).round();
+
+        println!("bbox {} {} {} {}", xtranslate, ytranslate, xsize_ps+xtranslate, ysize_ps+ytranslate);
         println!("newgraph");
-        println!("xaxis nodraw min 0 max {}", w);
-        println!("yaxis nodraw min 0 max {}", h);
+        println!("xaxis nodraw min 0 max {} size {}", w, xsize_in);
+        println!("yaxis nodraw min 0 max {} size {}", h, ysize_in);
         for i in 0..self.height as usize {
             for j in 0..self.width as usize {
                 color = frame_buffer.buffer[self.width as usize * i + j];
