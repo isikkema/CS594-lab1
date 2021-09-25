@@ -49,5 +49,5 @@ ARGS:
 `$ j-grangle obj/teapot.obj 500 500 --mode lines --background "0.5 0.5 0.5" | jgraph -P | convert - 05-teapot-background.jpg`  
 ![](05-teapot-background.jpg)  
 
-`$ j-grangle obj/bunny.obj 500 500 --scale "30 30 30" --translate "-1 2 0" | jgraph -P | convert - 10-bunny-translate.jpg`
+`$ j-grangle obj/bunny.obj 500 500 --scale "30 30 30" --translate "-1 2 0" | jgraph -P | convert - 10-bunny-translate.jpg`  
 ![](10-bunny-translate.jpg)  
